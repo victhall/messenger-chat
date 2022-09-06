@@ -1,6 +1,7 @@
 export default function Signup() {
   return (
     <>
+    <div className="">
       <div className="header">
         <p>NSM Messenger</p>
         <div className="container">
@@ -22,7 +23,6 @@ export default function Signup() {
 
       <form>
         <div>
-
           <div>
             <label>Username</label>
             <input />
@@ -36,17 +36,13 @@ export default function Signup() {
             <label>Confirm Password</label>
             <input />
           </div>
-
-          <div>
             <button>Sign Up</button>
-          </div>
-
         </div>
       </form>
-
       <div>
         <p>Already have an account?</p>
         <p>Log in</p>
+      </div>
       </div>
     </>
   )
