@@ -1,0 +1,13 @@
+.login-container {
+  background-color: aqua;
+}
+
+.menu {
+  display: flex;
+  flex-direction: row;
+}
+
+.inputs {
+  display: flex;
+  flex-direction: column;
+}

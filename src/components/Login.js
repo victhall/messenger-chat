@@ -1,11 +1,12 @@
 import { Link } from 'react-router-dom'
+import classes from './Login.module.css'
 
 export default function Login() {
   return (
     <>
-      <div className="">
+      <div className={classes['login-container']}>
 
-        <div className="header">
+        <div className={classes.header}>
 
           <p>NSM Messenger</p>
           <div className="container">
@@ -21,7 +22,7 @@ export default function Login() {
             </span>
           </div>
         </div>
-        <div className="menu">
+        <div className={classes.menu}>
           <p className="menu-file">File</p>
           <p className="menu-contacts">Contacts</p>
           <p className="menu-actions">Actions</p>
@@ -29,9 +30,13 @@ export default function Login() {
           <p className="menu-help">Help</p>
         </div>
 
+        <div>
+          <img src='pfp.png'/>
+        </div>
+
         <form>
-          <div className="">
-            <div>
+          <div>
+            <div className={classes.inputs}>
               <label>Email Address</label>
               <input />
               <label>Password</label>
@@ -44,7 +49,7 @@ export default function Login() {
         <div>
           <p>Forgot password?</p>
           <p link></p>
-          <Link to="/Signup">Get a new account</Link>
+          <Link to="/signup">Get a new account</Link>
         </div>
 
       </div>

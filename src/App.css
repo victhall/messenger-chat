@@ -1,9 +1,15 @@
 body {
   margin: 0;
   padding: 0;
-  background-image: url('../public/windows-xp-bg.png');
-  background-repeat: no-repeat;
+  background: #fff url('../public/windows-xp-bg.png') no-repeat top center;
   background-size: cover;
+}
+
+#root {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .App {

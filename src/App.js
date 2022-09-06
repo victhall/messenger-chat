@@ -4,14 +4,13 @@ import Signup from "./components/Signup";
 import Login from "./components/Login";
 import './App.css'
 
-
 function App() {
   return (
     <>
       <Router>
         <Routes>
           <Route path="/login" element={<Login />} />
-          <Route path="/Signup" element={<Signup />} />
+          <Route path="/signup" element={<Signup />} />
         </Routes>
       </Router>
     </>

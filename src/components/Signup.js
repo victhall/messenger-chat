@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import classes from './Signup.module.css'
 
 export default function Signup() {
   return (
