@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+
 export default function Signup() {
   return (
     <>
@@ -41,7 +43,7 @@ export default function Signup() {
       </form>
       <div>
         <p>Already have an account?</p>
-        <p>Log in</p>
+        <Link to="/login">Sign in</Link>
       </div>
       </div>
     </>

@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+
 export default function Login() {
   return (
     <>
@@ -24,7 +26,7 @@ export default function Login() {
           <p className="menu-contacts">Contacts</p>
           <p className="menu-actions">Actions</p>
           <p className="menu-tools">Tools</p>
-          <p className="menu-tools">Help</p>
+          <p className="menu-help">Help</p>
         </div>
 
         <form>
@@ -41,7 +43,8 @@ export default function Login() {
         </form>
         <div>
           <p>Forgot password?</p>
-          <p>Get a new account</p>
+          <p link></p>
+          <Link to="/Signup">Get a new account</Link>
         </div>
 
       </div>
