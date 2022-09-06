@@ -27,7 +27,7 @@ export default function Signup() {
             <label>Username</label>
             <input />
 
-            <label>Email</label>
+            <label>Email Address</label>
             <input />
 
             <label>Password</label>
