@@ -41,7 +41,7 @@ export default function Login() {
                 <label>E-mail address:</label>
                 <input type="email"/>
                 <label>Password:</label>
-                <input type="text"/>
+                <input type="password"/>
                 <div className={classes['signin']}>
               <button className={classes['signin-btn']}>Sign In</button>
               </div>
@@ -49,7 +49,7 @@ export default function Login() {
 
           </form>
           <div className={classes['login-footer']}>
-            <Link className={classes['login-link']} to="/">Forgot password?</Link>
+            <Link className={classes['login-link']} to="/forgot-password">Forgot password?</Link>
             <Link className={classes['login-link']} to="/signup">Get a new account</Link>
           </div>
 

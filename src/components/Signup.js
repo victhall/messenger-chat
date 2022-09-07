@@ -4,48 +4,61 @@ import classes from './Signup.module.css'
 export default function Signup() {
   return (
     <>
-    <div className="">
-      <div className="header">
-        <p>NSM Messenger</p>
-        <div className="container">
-          <span className="box">
-            <span className="box-minimize"></span>
+    <div className={classes['outer-signup__container']}>
+      <div className={classes.header}>
+        <p>MSN Messenger</p>
+        <div className={classes.container}>
+          <span className={classes.box}>
+            <span className={classes['box-minimize']}></span>
           </span>
-          <span className="box">
-            <span className="box-maximize"></span>
+          <span className={classes.box}>
+            <span className={classes['box-maximize']}></span>
           </span>
-          <span className="box">
-            <span className="box-exit box-exit-right"></span>
-            <span className="box-exit box-exit-left"></span>
+          <span className={classes.box}>
+            <span className={`${classes['box-exit']} ${classes['box-exit-right']}`}></span>
+            <span className={`${classes['box-exit']} ${classes['box-exit-left']}`}></span>
           </span>
 
         </div>
       </div>
 
+      <div className={classes.menu}>
+          <p className="menu-file">File</p>
+          <p className="menu-contacts">Contacts</p>
+          <p className="menu-actions">Actions</p>
+          <p className="menu-tools">Tools</p>
+          <p className="menu-help">Help</p>
+        </div>
+
+        <div className={classes['inner-signup__container']}>
+          <div className={classes['signup-title']}>
       <h2>Sign Up</h2>
-
+</div>
       <form>
-        <div>
-          <div>
-            <label>Username</label>
-            <input />
 
-            <label>Email Address</label>
-            <input />
+        <div className={classes.inputs}>
+            <label>Username:</label>
+            <input type="text"/>
+            <label>E-mail Address:</label>
+            <input type="email"/>
+            <label>Password:</label>
+            <input type="password"/>
+            <label>Confirm Password:</label>
+            <input type="password"/>
 
-            <label>Password</label>
-            <input />
+          <div className={classes['signup']}>
+            <button className={classes['signup-btn']}>Sign Up</button>
+            </div>
 
-            <label>Confirm Password</label>
-            <input />
-          </div>
-            <button>Sign Up</button>
         </div>
+
       </form>
-      <div>
+      <div className={classes['signup-footer']}>
         <p>Already have an account?</p>
-        <Link to="/login">Sign in</Link>
+        <Link to="/login">Log in</Link>
       </div>
+      </div>
+
       </div>
     </>
   )
