@@ -9,19 +9,20 @@ export default function Login() {
         <div className={classes.header}>
 
           <p>MSN Messenger</p>
-          <div className="container">
-            <span className="box">
-              <span className="box-minimize"></span>
+          <div className={classes.container}>
+            <span className={classes.box}>
+              <span className={classes['box-minimize']}></span>
             </span>
-            <span className="box">
-              <span className="box-maximize"></span>
+            <span className={classes.box}>
+              <span className={classes['box-maximize']}></span>
             </span>
-            <span className="box">
-              <span className="box-exit box-exit-right"></span>
-              <span className="box-exit box-exit-left"></span>
+            <span className={classes.box}>
+              <span className={`${classes['box-exit']} ${classes['box-exit-right']}`}></span>
+              <span className={`${classes['box-exit']} ${classes['box-exit-left']}`}></span>
             </span>
           </div>
         </div>
+
         <div className={classes.menu}>
           <p className="menu-file">File</p>
           <p className="menu-contacts">Contacts</p>
@@ -42,7 +43,7 @@ export default function Login() {
                 <label>Password:</label>
                 <input type="text"/>
                 <div className={classes['signin']}>
-              <button className={classes['signin-btn']}>Sign in</button>
+              <button className={classes['signin-btn']}>Sign In</button>
               </div>
               </div>
 
