@@ -32,7 +32,7 @@ export default function Signup() {
 
         <div className={classes['inner-signup__container']}>
           <div className={classes['signup-title']}>
-      <h2>Sign Up</h2>
+      <h2>Sign up for Messenger</h2>
 </div>
       <form>
 
