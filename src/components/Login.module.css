@@ -72,7 +72,7 @@
   display: flex;
   flex-direction: row;
   margin-bottom: 2px;
-  border: inset;
+  border: outset;
 }
 
 .menu p {
@@ -134,11 +134,11 @@
 .signin {
   text-align: center;
   padding-top: 2rem;
-  padding-bottom: 4rem;
+  padding-bottom: 3rem;
 }
 
 .inner-login__container {
-  border: outset 1.5px #c0c3d2;
+  border: inset 1.5px #c0c3d2;
   border-radius: .5rem .5rem 0rem 0rem;
   background: linear-gradient(180deg, rgba(248, 249, 252, 1) 0%, rgba(207, 223, 237, 1) 40%);
 }
