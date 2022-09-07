@@ -1,5 +1,15 @@
-.login-container {
-  background-color: aqua;
+.outer-login__container {
+  background-color: #d4e7f8;
+  padding: 0 .5rem .5rem ;
+  border-radius: .3rem;
+}
+
+.header p {
+  margin-top: .5rem;
+}
+
+.container {
+  border: 6px solid black;
 }
 
 .menu {
@@ -10,4 +20,84 @@
 .inputs {
   display: flex;
   flex-direction: column;
+}
+
+.inputs label {
+  color: #0f1679;
+  font-weight: 400;
+  padding: 10px 42px 2px;
+}
+
+.inputs input {
+  border: 1.7px solid #97a7cb;
+  border-radius: 2px;
+  align-self: center;
+  width: 70%;
+  height: 25px;
+}
+
+.signin-btn {
+  color: #0f1679;
+  width: 30%;
+  padding: .3rem 1rem;
+  border: 1.5px solid #878788;
+  margin-right: 10px;
+  border-radius: 3px;
+  display: inline;
+  margin-right: 10px;
+  background: #f6f6f6;
+  background: -moz-linear-gradient(top, #f6f6f6 0%, #ffffff 6%, #fffdfe 12%, #fbf9fa 18%, #f8f7f5 41%, #f7f3f0 47%, #f8f3ef 82%, #e7e0d8 94%, #dad3c9 100%);
+  background: -webkit-linear-gradient(top, #f6f6f6 0%, #ffffff 6%, #fffdfe 12%, #fbf9fa 18%, #f8f7f5 41%, #f7f3f0 47%, #f8f3ef 82%, #e7e0d8 94%, #dad3c9 100%);
+  background: linear-gradient(to bottom, #f6f6f6 0%, #ffffff 6%, #fffdfe 12%, #fbf9fa 18%, #f8f7f5 41%, #f7f3f0 47%, #f8f3ef 82%, #e7e0d8 94%, #dad3c9 100%);
+  filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#f6f6f6', endColorstr='#dad3c9', GradientType=0);
+}
+
+.signin-btn:hover,
+.signin-btn:focus {
+  cursor: pointer;
+  outline: 0;
+  border: 1.5px solid #97a7cb;
+}
+
+.signin-btn:active {
+  background: #dad3c9;
+  background: -moz-linear-gradient(top, #dad3c9 0%, #e7e0d8 6%, #f8f3ef 18%, #f7f3f0 53%, #f8f7f5 59%, #fbf9fa 82%, #fffdfe 88%, #ffffff 94%, #f6f6f6 100%);
+  background: -webkit-linear-gradient(top, #dad3c9 0%, #e7e0d8 6%, #f8f3ef 18%, #f7f3f0 53%, #f8f7f5 59%, #fbf9fa 82%, #fffdfe 88%, #ffffff 94%, #f6f6f6 100%);
+  background: linear-gradient(to bottom, #dad3c9 0%, #e7e0d8 6%, #f8f3ef 18%, #f7f3f0 53%, #f8f7f5 59%, #fbf9fa 82%, #fffdfe 88%, #ffffff 94%, #f6f6f6 100%);
+  filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#dad3c9', endColorstr='#f6f6f6', GradientType=0);
+}
+
+.signin {
+  text-align: center;
+  padding-top: 1.5rem;
+  padding-bottom: 2rem;
+}
+
+.inner-login__container {
+  border: inset 1.5px #97a7cb;
+  border-radius: .5rem .5rem 0rem 0rem;
+  background: linear-gradient(180deg, rgba(248,249,252,1) 0%, rgba(207,223,237,1) 40%);
+}
+
+.default-pfp {
+  height: 45%;
+  width: 45%;
+  border-radius: .8rem;
+  border: 1.4px solid #053579;
+}
+
+.pfp-div {
+  text-align: center;
+  padding: 3rem 0 1rem 0;
+}
+
+.login-footer {
+  padding-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  padding-left: 1rem;
+}
+
+.login-link {
+  padding-bottom: 1rem;
 }

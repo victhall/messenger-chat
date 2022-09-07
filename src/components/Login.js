@@ -4,11 +4,11 @@ import classes from './Login.module.css'
 export default function Login() {
   return (
     <>
-      <div className={classes['login-container']}>
+      <div className={classes['outer-login__container']}>
 
         <div className={classes.header}>
 
-          <p>NSM Messenger</p>
+          <p>MSN Messenger</p>
           <div className="container">
             <span className="box">
               <span className="box-minimize"></span>
@@ -30,28 +30,29 @@ export default function Login() {
           <p className="menu-help">Help</p>
         </div>
 
-        <div>
-          <img src='pfp.png'/>
-        </div>
-
-        <form>
-          <div>
-            <div className={classes.inputs}>
-              <label>Email Address</label>
-              <input />
-              <label>Password</label>
-              <input />
-            </div>
-            <button>Sign In</button>
+        <div className={classes['inner-login__container']}>
+          <div className={classes['pfp-div']}>
+            <img className={classes['default-pfp']} src='pfp.png' alt="default profile picture"/>
           </div>
 
-        </form>
-        <div>
-          <p>Forgot password?</p>
-          <p link></p>
-          <Link to="/signup">Get a new account</Link>
-        </div>
+          <form>
+              <div className={classes.inputs}>
+                <label>E-mail address:</label>
+                <input type="email"/>
+                <label>Password:</label>
+                <input type="text"/>
+                <div className={classes['signin']}>
+              <button className={classes['signin-btn']}>Sign in</button>
+              </div>
+              </div>
 
+          </form>
+          <div className={classes['login-footer']}>
+            <Link className={classes['login-link']} to="/">Forgot password?</Link>
+            <Link className={classes['login-link']} to="/signup">Get a new account</Link>
+          </div>
+
+        </div>
       </div>
     </>
   )
