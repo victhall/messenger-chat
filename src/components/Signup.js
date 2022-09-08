@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import classes from './Signup.module.css';
 import { useAuth } from '../contexts/AuthProvider';
 import { updateProfile } from 'firebase/auth';
+import { auth } from '../Firebase';
 
 export default function Signup() {
   const usernameRef = useRef();
@@ -25,11 +26,11 @@ export default function Signup() {
     try {
       setError('');
       setIsLoading(true);
-      const { newUser } = await signup(emailRef.current.value, passwordRef.current.value);
-      await updateProfile(newUser, {
+      await signup(emailRef.current.value, passwordRef.current.value);
+      await updateProfile(auth.currentUser, {
         displayName: usernameRef.current.value
-      });
-    } catch(event) {
+      })
+    } catch (event) {
       console.log(event)
       setError('Account creation failed.');
     }
