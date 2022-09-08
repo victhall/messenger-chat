@@ -1,12 +1,30 @@
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import classes from './Signup.module.css'
+import { useAuth } from '../contexts/AuthProvider';
+// import { updateProfile } from 'firebase/auth';
 
 export default function Signup() {
-const usernameRef = useRef();
-const emailRef = useRef();
-const passwordRef = useRef();
-const confirmPasswordRef = useRef();
+  const usernameRef = useRef();
+  const emailRef = useRef();
+  const passwordRef = useRef();
+  const confirmPasswordRef = useRef();
+  const { signup } = useAuth();
+  const [error, setError] = useState('')
+
+  const submitHandler = function (event) {
+    event.preventDefault()
+
+    if(passwordRef !== confirmPasswordRef.current.value) {
+      return setError('Passwords do not match')
+    }
+
+    const newUser = signup(emailRef.current.value, passwordRef.current.value)
+
+    // newUser.user.updateProfile({
+    //   userName: usernameRef.current.value
+    // })
+  }
 
   return (
     <>
@@ -40,8 +58,8 @@ const confirmPasswordRef = useRef();
           <div className={classes['signup-title']}>
             <h2>Messenger Sign Up</h2>
           </div>
-          <form>
 
+          <form >
             <div className={classes.inputs}>
               <label>Username:</label>
               <input
