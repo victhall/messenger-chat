@@ -1,8 +1,8 @@
-import { useRef, useState } from 'react'
-import { Link } from 'react-router-dom'
-import classes from './Signup.module.css'
+import { useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
+import classes from './Signup.module.css';
 import { useAuth } from '../contexts/AuthProvider';
-// import { updateProfile } from 'firebase/auth';
+import { updateProfile } from 'firebase/auth';
 
 export default function Signup() {
   const usernameRef = useRef();
@@ -10,20 +10,30 @@ export default function Signup() {
   const passwordRef = useRef();
   const confirmPasswordRef = useRef();
   const { signup } = useAuth();
-  const [error, setError] = useState('')
+  const [error, setError] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
-  const submitHandler = function (event) {
+  const submitHandler = async function (event) {
     event.preventDefault()
 
-    if(passwordRef !== confirmPasswordRef.current.value) {
+    //if passwords do not match return error message
+    if (passwordRef.current.value !==
+      confirmPasswordRef.current.value) {
       return setError('Passwords do not match')
     }
 
-    const newUser = signup(emailRef.current.value, passwordRef.current.value)
-
-    // newUser.user.updateProfile({
-    //   userName: usernameRef.current.value
-    // })
+    try {
+      setError('');
+      setIsLoading(true);
+      const { newUser } = await signup(emailRef.current.value, passwordRef.current.value);
+      await updateProfile(newUser, {
+        displayName: usernameRef.current.value
+      });
+    } catch(event) {
+      console.log(event)
+      setError('Account creation failed.');
+    }
+    setIsLoading(false)
   }
 
   return (
@@ -59,7 +69,8 @@ export default function Signup() {
             <h2>Messenger Sign Up</h2>
           </div>
 
-          <form >
+          {error && console.log(error)}
+          <form onSubmit={submitHandler}>
             <div className={classes.inputs}>
               <label>Username:</label>
               <input
@@ -90,7 +101,7 @@ export default function Signup() {
               />
 
               <div className={classes['signup']}>
-                <button className={classes['signup-btn']}>Sign Up</button>
+                <button disabled={isLoading} className={classes['signup-btn']}>Sign Up</button>
               </div>
 
             </div>
