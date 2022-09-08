@@ -6,7 +6,7 @@ export default function Signup() {
     <>
     <div className={classes['outer-signup__container']}>
       <div className={classes.header}>
-        <p>MSN Messenger</p>
+        <p>Messenger</p>
         <div className={classes.container}>
           <span className={classes.box}>
             <span className={classes['box-minimize']}></span>
@@ -32,7 +32,7 @@ export default function Signup() {
 
         <div className={classes['inner-signup__container']}>
           <div className={classes['signup-title']}>
-      <h2>Sign up for Messenger</h2>
+      <h2>Messenger Sign Up</h2>
 </div>
       <form>
 

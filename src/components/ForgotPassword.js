@@ -7,7 +7,7 @@ export default function ForgotPassword() {
 
       <div className={classes.header}>
 
-        <p>MSN Messenger</p>
+        <p>Messenger</p>
         <div className={classes.container}>
           <span className={classes.box}>
             <span className={classes['box-minimize']}></span>
@@ -32,7 +32,7 @@ export default function ForgotPassword() {
 
       <div className={classes['inner-fp__container']}>
         <div className={classes['fp-title']}>
-          <h2>Password Reset Help</h2>
+          <h2>Password Reset</h2>
         </div>
 
         <form>

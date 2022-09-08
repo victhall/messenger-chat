@@ -8,7 +8,7 @@ export default function Login() {
 
         <div className={classes.header}>
 
-          <p>MSN Messenger</p>
+          <p>Messenger</p>
           <div className={classes.container}>
             <span className={classes.box}>
               <span className={classes['box-minimize']}></span>
