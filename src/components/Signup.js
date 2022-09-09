@@ -23,9 +23,8 @@ export default function Signup() {
   const submitHandler = async function (event) {
     event.preventDefault()
 
-    const findExistingUsername = users.find(user => user.username === usernameRef.current.value)
-
     //if username is found in firestore db return error message
+    const findExistingUsername = users.find(user => user.username === usernameRef.current.value)
     if (findExistingUsername) {
       return setError('Username already exists')
     }
@@ -44,9 +43,7 @@ export default function Signup() {
         displayName: usernameRef.current.value
       })
 
-      // setDoc(userDb, { username: usernameRef.current.value }, { merge: true });
-
-      addDoc(collection(userDb, "users"), {
+      await setDoc(doc(userDb), {
         username: usernameRef.current.value
       });
 
