@@ -16,8 +16,8 @@ export default function Signup() {
   const { signup } = useAuth();
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const navigate = useNavigate()
-
+  const navigate = useNavigate();
+  
   const userDb = collection(firestore, "users");
   const [users] = useCollectionData(userDb);
 
@@ -26,6 +26,7 @@ export default function Signup() {
 
     //if entered username is found in firestore db return error message
     const findExistingUsername = users.find(user => user.username === usernameRef.current.value)
+    
     if (findExistingUsername) {
       return setError('Username already exists')
     };

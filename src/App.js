@@ -3,7 +3,7 @@ import './App.css'
 
 import Signup from "./components/Signup";
 import Login from "./components/Login";
-import Home from "./components/Home"
+import FriendList from "./components/FriendList"
 import ForgotPassword from './components/ForgotPassword';
 import { AuthProvider } from './contexts/AuthProvider';
 
@@ -13,7 +13,7 @@ function App() {
       <Router>
         <AuthProvider>
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<FriendList />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
