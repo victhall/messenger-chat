@@ -1,7 +1,30 @@
 import { Link } from 'react-router-dom'
 import classes from './ForgotPassword.module.css'
+import { useRef, useState } from 'react';
+import { useAuth } from '../contexts/AuthProvider';
 
 export default function ForgotPassword() {
+  const emailRef = useRef();
+  const { resetPassword } = useAuth();
+  const [error, setError] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+
+
+  const submitHandler = async function (event) {
+    event.preventDefault()
+
+    try {
+      setError('');
+      setIsLoading(true);
+      await resetPassword(emailRef.current.value);
+    } catch (event) {
+      console.log(event)
+      setError('RESET failed.');
+    }
+    emailRef.current.value = ""
+    setIsLoading(false)
+  }
+
   return (
     <div className={classes['outer-fp__container']}>
 
@@ -35,10 +58,12 @@ export default function ForgotPassword() {
           <h2>Password Reset</h2>
         </div>
 
-        <form>
+        <form onSubmit={submitHandler}>
           <div className={classes.inputs}>
             <label>E-mail address:</label>
-            <input type="email" />
+            <input type="email"
+              ref={emailRef}
+              required />
             <div className={classes['reset-password']}>
               <button className={classes['reset-btn']}>Reset Password</button>
             </div>
