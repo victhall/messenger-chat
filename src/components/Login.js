@@ -1,7 +1,31 @@
-import { Link } from 'react-router-dom'
+import { useRef, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom'
 import classes from './Login.module.css'
+import { useAuth } from '../contexts/AuthProvider';
 
 export default function Login() {
+  const emailRef = useRef();
+  const passwordRef = useRef();
+  const { login } = useAuth();
+  const [error, setError] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate()
+
+  const submitHandler = async function (event) {
+    event.preventDefault()
+
+    try {
+      setError('');
+      setIsLoading(true);
+      await login(emailRef.current.value, passwordRef.current.value);
+      navigate('/')
+    } catch (event) {
+      console.log(event)
+      setError('Login failed.');
+    }
+    setIsLoading(false)
+  }
+
   return (
     <>
       <div className={classes['outer-login__container']}>
@@ -36,14 +60,18 @@ export default function Login() {
             <img className={classes['default-pfp']} src='pfp.png' alt="default profile picture"/>
           </div>
 
-          <form>
+          <form onSubmit={submitHandler}>
               <div className={classes.inputs}>
                 <label>E-mail address:</label>
-                <input type="email"/>
+                <input type="email"
+                ref={emailRef}
+                />
                 <label>Password:</label>
-                <input type="password"/>
+                <input type="password"
+                ref={passwordRef}
+                />
                 <div className={classes['signin']}>
-              <button className={classes['signin-btn']}>Sign In</button>
+              <button disabled={isLoading} className={classes['signin-btn']}>Sign In</button>
               </div>
               </div>
 

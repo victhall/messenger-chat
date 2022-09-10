@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import classes from './Signup.module.css';
 import { useAuth } from '../contexts/AuthProvider';
 import { updateProfile } from 'firebase/auth';
@@ -16,6 +16,7 @@ export default function Signup() {
   const { signup } = useAuth();
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate()
 
   const userDb = collection(firestore, "users");
   const [users] = useCollectionData(userDb);
@@ -23,17 +24,17 @@ export default function Signup() {
   const submitHandler = async function (event) {
     event.preventDefault()
 
-    //if username is found in firestore db return error message
+    //if entered username is found in firestore db return error message
     const findExistingUsername = users.find(user => user.username === usernameRef.current.value)
     if (findExistingUsername) {
       return setError('Username already exists')
-    }
+    };
 
-    //if passwords do not match return error message
+    //if entered passwords do not match return error message
     if (passwordRef.current.value !==
       confirmPasswordRef.current.value) {
       return setError('Passwords do not match')
-    }
+    };
 
     try {
       setError('');
@@ -42,21 +43,14 @@ export default function Signup() {
       updateProfile(auth.currentUser, {
         displayName: usernameRef.current.value
       })
-
       await setDoc(doc(userDb), {
         username: usernameRef.current.value
       });
-
-
+      navigate('/login')
     } catch (event) {
       console.log(event)
       setError('Account creation failed.');
     }
-    usernameRef.current.value = '';
-    emailRef.current.value = '';
-    passwordRef.current.value = '';
-    confirmPasswordRef.current.value = '';
-
     setIsLoading(false)
   }
 
