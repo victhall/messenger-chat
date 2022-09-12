@@ -88,21 +88,21 @@
 .inputs label {
   color: #0f1679;
   font-weight: 400;
-  padding: 10px 42px 2px;
+  padding: 10px 22px 2px;
 }
 
 .inputs input {
   border: 1.7px solid #97a7cb;
   border-radius: 2px;
   align-self: center;
-  width: 70%;
+  width: 80%;
   height: 25px;
 }
 
 .signin-btn {
   color: #0f1679;
   font-weight: 600;
-  width: 30%;
+  width: 50%;
   padding: .3rem 1rem;
   border: 1.5px solid #878788;
   margin-right: 10px;
@@ -143,16 +143,10 @@
   background: linear-gradient(180deg, rgba(248, 249, 252, 1) 0%, rgba(207, 223, 237, 1) 40%);
 }
 
-.default-pfp {
-  height: 40%;
-  width: 40%;
-  border-radius: .8rem;
-  border: 1.4px solid #053579;
-}
-
-.pfp-div {
+.login-title {
   text-align: center;
-  padding: 3rem 0 1rem 0;
+  padding: 1rem 1rem 0 1rem;
+  color: #1f1f1f;
 }
 
 .login-footer {

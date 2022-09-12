@@ -4,7 +4,7 @@ import classes from './Signup.module.css';
 import { useAuth } from '../contexts/AuthProvider';
 import { updateProfile } from 'firebase/auth';
 import { firestore, auth } from '../Firebase'
-import { collection, setDoc, doc, addDoc } from "firebase/firestore";
+import { collection, setDoc, doc } from "firebase/firestore";
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 
 
@@ -85,7 +85,7 @@ export default function Signup() {
 
         <div className={classes['inner-signup__container']}>
           <div className={classes['signup-title']}>
-            <h2>Messenger Sign Up</h2>
+            <h2>Create Account</h2>
           </div>
 
           {error && console.log(error)}

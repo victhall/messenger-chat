@@ -11,20 +11,20 @@ export default function Login() {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate()
 
-  const submitHandler = async function (event) {
+  async function submitHandler(event) {
     event.preventDefault()
 
     try {
       setError('');
       setIsLoading(true);
-      await login(emailRef.current.value, passwordRef.current.value);
+      login(emailRef.current.value, passwordRef.current.value);
       navigate('/')
     } catch (event) {
       console.log(event)
       setError('Login failed.');
     }
     setIsLoading(false)
-  }
+  };
 
   return (
     <>
@@ -56,9 +56,10 @@ export default function Login() {
         </div>
 
         <div className={classes['inner-login__container']}>
-          <div className={classes['pfp-div']}>
-            <img className={classes['default-pfp']} src='pfp.png' alt="default profile picture"/>
+        <div className={classes['login-title']}>
+            <h2>Log In</h2>
           </div>
+
 
           <form onSubmit={submitHandler}>
               <div className={classes.inputs}>
