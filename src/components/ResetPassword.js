@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom'
-import classes from './ForgotPassword.module.css'
+import classes from './ResetPassword.module.css'
 import { useRef, useState } from 'react';
 import { useAuth } from '../contexts/AuthProvider';
 
-export default function ForgotPassword() {
+export default function ResetPassword() {
   const emailRef = useRef();
   const { resetPassword } = useAuth();
   const [error, setError] = useState('');

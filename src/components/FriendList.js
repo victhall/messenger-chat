@@ -40,7 +40,7 @@ export default function FriendList() {
       <div className={classes['outer-fl__container']}>
         <div className={classes.header}>
 
-          <p>Messenger - {currentUser.email}</p>
+          <p>Messenger</p>
           <div className={classes.container}>
             <span className={classes.box}>
               <span className={classes['box-minimize']}></span>
