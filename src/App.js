@@ -2,7 +2,7 @@ import './App.css'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Signup from "./components/Signup";
 import Login from "./components/Login";
-import FriendList from "./components/FriendList"
+import ContactList from "./components/ContactList"
 import ResetPassword from './components/ResetPassword';
 import { AuthProvider } from './contexts/AuthProvider';
 import Chat from './components/Chat';
@@ -14,7 +14,7 @@ function App() {
       <Router>
         <AuthProvider>
           <Routes>
-            <Route path="/" element={<FriendList />} />
+            <Route path="/" element={<ContactList />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/forgot-password" element={<ResetPassword />} />

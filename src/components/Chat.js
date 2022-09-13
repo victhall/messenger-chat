@@ -33,7 +33,7 @@ export default function Chat() {
 
       <form>
         <div className={classes.inputs}>
-          <input type='text' />
+          <textarea type='text' />
         </div>
 
         <div className={classes['send']}>

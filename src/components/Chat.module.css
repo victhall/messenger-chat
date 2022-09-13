@@ -4,7 +4,7 @@
   border-radius: .1rem;
   border: 3px outset;
   background-color: #dadad1;
-  width: 25rem;
+  width: 22rem;
 }
 
 .header {
@@ -87,7 +87,7 @@
   padding: 5px 3px 2px 3px;
 }
 
-.inputs input {
+.inputs textarea {
   border: 1.7px solid #97a7cb;
   border-radius: 2px;
   align-self: center;

@@ -4,24 +4,61 @@ import { useAuth } from "../contexts/AuthProvider"
 import { collection, getDocs } from "firebase/firestore";
 import { firestore } from "../Firebase";
 import { useCollectionData } from 'react-firebase-hooks/firestore';
-import classes from './FriendList.module.css'
-import Friends from "./Friends";
+import classes from './ContactList.module.css'
 
-export default function FriendList() {
+
+let users = [
+  {
+    id: 1,
+    username: 'dogbackwards'
+  },
+  {
+    id: 2,
+    username: 'iLuvApplez'
+  },
+  {
+    id: 3,
+    username: 'bobababi3'
+  },
+  {
+    id: 4,
+    username: 'martinpham'
+  },
+  {
+    id: 5,
+    username: '7daywonder'
+  },
+  {
+    id: 6,
+    username: 'cowsarefrenz'
+  },
+  {
+    id: 7,
+    username: 'lunarmoonar2'
+  },
+  {
+    id: 8,
+    username: 'samXham12'
+  },
+  {
+    id: 9,
+    username: 'Mrmilkies'
+  },
+  {
+    id: 10,
+    username: 'pillowprincessa'
+  }
+]
+
+export default function ContactList() {
+  const [searchInput, setSearchInput] = useState('')
   const [error, setError] = useState('');
   const { currentUser, logout } = useAuth();
   const navigate = useNavigate();
 
-  // async function getAllUsers() {
-  //   const querySnapshot = await getDocs(collection(firestore, "users"));
-  //   querySnapshot.forEach((doc) => {
-  //     // doc.data() is never undefined for query doc snapshots
-  //     console.log(doc.id, " => ", doc.data());
-  //   });
-  // }
-
-  // const userDb = collection(firestore, "users");
-  // const [users] = useCollectionData(userDb);
+  const searchInputHandler = function (event) {
+    setSearchInput(event.target.value)
+  }
 
   async function logoutHandler() {
     setError('')
@@ -40,7 +77,7 @@ export default function FriendList() {
       <div className={classes['outer-fl__container']}>
         <div className={classes.header}>
 
-          <p>Messenger</p>
+          <p>Contacts</p>
           <div className={classes.container}>
             <span className={classes.box}>
               <span className={classes['box-minimize']}></span>
@@ -62,15 +99,29 @@ export default function FriendList() {
           <p className="menu-tools">Tools</p>
           <p className="menu-help">Help</p>
         </div>
-        
+
         <form>
           <div className={classes.inputs}>
             <input
-              placeholder="Search..." />
+              placeholder="Search..."
+              onChange={searchInputHandler} />
           </div>
         </form>
         <div className={classes['inner-fl__container']}>
-          <Friends />
+          <ul>
+
+            {users.filter((user) => {
+              if (searchInput == "") {
+                return user
+              } else if (user.username.toLowerCase().includes(searchInput.toLocaleLowerCase())) {
+                return user
+              }
+            }).map((user) => {
+              return (
+                <li key={user.id} className={classes['friend-list']}>{user.username}</li>
+              )
+            })}
+          </ul>
         </div>
 
         <button onClick={logoutHandler} className={classes['logout-btn']}>Log Out</button>
