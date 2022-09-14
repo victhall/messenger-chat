@@ -6,55 +6,14 @@ import { firestore } from "../Firebase";
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import classes from './ContactList.module.css'
 
-
-let users = [
-  {
-    id: 1,
-    username: 'dogbackwards'
-  },
-  {
-    id: 2,
-    username: 'iLuvApplez'
-  },
-  {
-    id: 3,
-    username: 'bobababi3'
-  },
-  {
-    id: 4,
-    username: 'martinpham'
-  },
-  {
-    id: 5,
-    username: '7daywonder'
-  },
-  {
-    id: 6,
-    username: 'cowsarefrenz'
-  },
-  {
-    id: 7,
-    username: 'lunarmoonar2'
-  },
-  {
-    id: 8,
-    username: 'samXham12'
-  },
-  {
-    id: 9,
-    username: 'Mrmilkies'
-  },
-  {
-    id: 10,
-    username: 'pillowprincessa'
-  }
-]
-
 export default function ContactList() {
   const [searchInput, setSearchInput] = useState('')
   const [error, setError] = useState('');
   const { currentUser, logout } = useAuth();
   const navigate = useNavigate();
+
+  const userDb = collection(firestore, "users");
+  const [users] = useCollectionData(userDb);
 
   const searchInputHandler = function (event) {
     setSearchInput(event.target.value)
@@ -109,21 +68,19 @@ export default function ContactList() {
         </form>
         <div className={classes['inner-fl__container']}>
           <ul>
-
-            {users.filter((user) => {
+            {users && users.filter((user) => {
               if (searchInput == "") {
                 return user
-              } else if (user.username.toLowerCase().includes(searchInput.toLocaleLowerCase())) {
+              } else if (user.username.toLowerCase().includes(searchInput.toLowerCase())) {
                 return user
               }
             }).map((user) => {
               return (
-                <li key={user.id} className={classes['friend-list']}>{user.username}</li>
+                <li key={user.username} className={classes['friend-list']}>{user.username}</li>
               )
             })}
           </ul>
         </div>
-
         <button onClick={logoutHandler} className={classes['logout-btn']}>Log Out</button>
       </div>
     </>

@@ -6,7 +6,7 @@ import { updateProfile } from 'firebase/auth';
 import { firestore, auth } from '../Firebase'
 import { collection, setDoc, doc } from "firebase/firestore";
 import { useCollectionData } from 'react-firebase-hooks/firestore';
-
+import { v4 as uuidv4 } from 'uuid';
 
 export default function Signup() {
   const usernameRef = useRef();
@@ -45,7 +45,8 @@ export default function Signup() {
         displayName: usernameRef.current.value
       })
       await setDoc(doc(userDb), {
-        username: usernameRef.current.value
+        username: usernameRef.current.value,
+        chatId: uuidv4()
       });
       navigate('/login')
     } catch (event) {
