@@ -17,11 +17,12 @@ export default function Chat() {
     event.preventDefault()
 
     const { uid, displayName } = currentUser;
-    const timeStamp = new Date().toLocaleString('en-US', { hour: "2-digit", minute: "2-digit" })
+    const timeStamp = new Date().toLocaleString('en-US', { hour: "2-digit", minute: "2-digit" });
 
     setDoc(doc(messagesDb), {
       message: messageRef.current.value,
-      createdAt: timeStamp,
+      createdAt: serverTimestamp(),
+      timestamp: timeStamp,
       uid,
       displayName
     });

@@ -5,8 +5,9 @@ import { collection, getDocs } from "firebase/firestore";
 import { firestore } from "../Firebase";
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import classes from './ContactList.module.css'
+import Contact from './Contact.js'
 
-export default function ContactList() {
+export default function ContactList(props) {
   const [searchInput, setSearchInput] = useState('')
   const [error, setError] = useState('');
   const { currentUser, logout } = useAuth();
@@ -14,6 +15,8 @@ export default function ContactList() {
 
   const userDb = collection(firestore, "users");
   const [users] = useCollectionData(userDb);
+
+
 
   const searchInputHandler = function (event) {
     setSearchInput(event.target.value)
@@ -76,7 +79,14 @@ export default function ContactList() {
               }
             }).map((user) => {
               return (
-                <li key={user.username} className={classes['friend-list']}>{user.username}</li>
+                <Contact
+                  key={user.username}
+                  className={classes['friend-list']}
+                  username={user.username}
+                  onStartChat={props.onStartChat}>
+                    {user.username}
+                  </Contact>
+                  
               )
             })}
           </ul>
