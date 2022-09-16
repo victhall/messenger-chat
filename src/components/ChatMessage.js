@@ -11,7 +11,6 @@ export default function ChatMessage(props) {
       <p className={classes[`message-username ${messageClass}`]}>{displayName}</p>
       <p className={classes['message-text']}>{message}</p>
       <p className={classes['message-timestamp']}>{timestamp}</p>
-      {/* <p className={classes['message-timestamp']}>{uid}</p> */}
     </div>
   )
 }

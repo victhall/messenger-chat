@@ -1,17 +1,22 @@
-import classes from './Chat.module.css'
-import { collection, orderBy, limit, query, setDoc, doc, serverTimestamp } from "firebase/firestore";
-import { firestore } from '../Firebase'
+import classes from './Chat.module.css';
+import { collection, orderBy, limit, query, setDoc, doc, serverTimestamp, where } from "firebase/firestore";
+import { firestore } from '../Firebase';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import ChatMessage from './ChatMessage'
 import { useRef } from 'react';
 import { useAuth } from '../contexts/AuthProvider';
 
-export default function Chat() {
+export default function Chat(props) {
   const { currentUser } = useAuth();
   const messagesDb = collection(firestore, "messages");
-  const messageQuery = query(messagesDb, orderBy("createdAt"), limit(25));
+  const messageQuery = query(messagesDb, where("chatroomId", "==", props.chatroomId), orderBy("createdAt", "asc"), limit(25));
+
   const [messages] = useCollectionData(messageQuery, { idField: 'id' });
   const messageRef = useRef();
+
+  const chatroomDb = collection(firestore, 'chatrooms');
+  const chatroomQuery = query(chatroomDb, where("chatroomId", "==", props.chatroomId));
+  const [chatrooms] = useCollectionData(chatroomQuery);
 
   const sendMsgHandler = async function (event) {
     event.preventDefault()
@@ -19,12 +24,13 @@ export default function Chat() {
     const { uid, displayName } = currentUser;
     const timeStamp = new Date().toLocaleString('en-US', { hour: "2-digit", minute: "2-digit" });
 
-    setDoc(doc(messagesDb), {
+    await setDoc(doc(messagesDb), {
       message: messageRef.current.value,
       createdAt: serverTimestamp(),
       timestamp: timeStamp,
       uid,
-      displayName
+      displayName,
+      chatroomId: props.chatroomId
     });
     messageRef.current.value = ''
   }
@@ -58,7 +64,10 @@ export default function Chat() {
       </div>
 
       <div className={classes['chatbox']}>
-        {messages && messages.map(message => <ChatMessage key={message.id} message={message} />)}
+        {messages && messages.map(message => 
+        <ChatMessage 
+        key={message.id} 
+        message={message} />)}
       </div>
 
       <form onSubmit={sendMsgHandler}>
@@ -71,7 +80,6 @@ export default function Chat() {
           <button className={classes['send-btn']}>Send</button>
         </div>
       </form>
-
     </div>
   )
 }

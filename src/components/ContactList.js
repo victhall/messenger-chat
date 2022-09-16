@@ -16,8 +16,6 @@ export default function ContactList(props) {
   const userDb = collection(firestore, "users");
   const [users] = useCollectionData(userDb);
 
-
-
   const searchInputHandler = function (event) {
     setSearchInput(event.target.value)
   }
@@ -85,8 +83,7 @@ export default function ContactList(props) {
                   username={user.username}
                   onStartChat={props.onStartChat}>
                     {user.username}
-                  </Contact>
-                  
+                  </Contact>   
               )
             })}
           </ul>

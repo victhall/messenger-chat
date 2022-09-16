@@ -17,7 +17,7 @@ export default function Login() {
     try {
       setError('');
       setIsLoading(true);
-      login(emailRef.current.value, passwordRef.current.value);
+      await login(emailRef.current.value, passwordRef.current.value);
       navigate('/')
     } catch (event) {
       console.log(event)
