@@ -46,7 +46,7 @@ export default function Signup() {
       })
       await setDoc(doc(userDb), {
         username: usernameRef.current.value,
-        // chatId: uuidv4()
+        chatId: uuidv4()
       });
       navigate('/login')
     } catch (event) {
