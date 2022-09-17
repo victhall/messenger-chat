@@ -81,6 +81,7 @@ export default function ContactList(props) {
                   key={user.username}
                   className={classes['friend-list']}
                   username={user.username}
+                  chatId={user.chatId}
                   onStartChat={props.onStartChat}>
                     {user.username}
                   </Contact>   
