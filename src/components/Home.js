@@ -8,7 +8,7 @@ import { collection, setDoc, doc, where } from "firebase/firestore";
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import { useState } from 'react';
 
-export default function Home() {
+export default function Home(props) {
   const [chatroomId, setChatroomId] = useState('');
   const { currentUser } = useAuth();
 
@@ -16,22 +16,38 @@ export default function Home() {
   const [chatrooms] = useCollectionData(chatroomDb);
 
   async function startChat(userOne, userTwo) {
-  
-    
-    const newChatroomId = uuidv4()
-    setChatroomId(newChatroomId)
 
-    await setDoc(doc(chatroomDb), {
-      chatroomId: newChatroomId,
-      userOne: userOne,
-      userTwo: userTwo
-    });
+    let chatroomExists = false
+    const newChatroomId = uuidv4()
+
+    chatrooms.forEach(chatroom => {
+      if ((chatroom.userTwo === userOne && chatroom.userOne === userTwo) || (chatroom.userOne === userOne && chatroom.userTwo === userTwo)) {
+        setChatroomId(chatroom.chatroomId)
+        return chatroomExists = true
+      }
+      if(chatroom.userTwo !== userTwo || chatroom.userOne !== userOne || chatroom.userTwo !== userOne || chatroom.userOne) {
+        setChatroomId(newChatroomId)
+        return chatroomExists = false
+      }
+    })
+
+    if (chatroomExists === false) {
+      await setDoc(doc(chatroomDb), {
+        chatroomId: newChatroomId,
+        userOne: userOne,
+        userTwo: userTwo,
+      });
+
+      return setChatroomId(newChatroomId)
+    }
+
+
   }
 
   return (
     <div className={classes.home}>
       <ContactList onStartChat={startChat} />
-      <Chat chatroomId={chatroomId}/>
+      <Chat chatroomId={chatroomId} />
     </div>
   )
 }

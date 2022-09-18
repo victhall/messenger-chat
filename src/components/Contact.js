@@ -10,20 +10,13 @@ export default function Contact(props) {
   const userQuery = query(userDb, where("username", "==", currentUser.displayName));
   const [user] = useCollectionData(userQuery);
 
+  const loggedInUser = currentUser.displayName;
+  const chatContact = props.username
+
   return (
     <>
-      <div className="friend" onClick={() => {
-        props.onStartChat(
-
-            {
-                chatId: user[0].chatId,
-                username: currentUser.displayName
-            }, 
-            {
-                chatId: props.chatId,
-                username: props.username
-            }
-            )
+      <div className="contact" onClick={() => {
+        props.onStartChat(loggedInUser, chatContact)
       }
       }>
         {props.username}
