@@ -21,14 +21,16 @@ export default function Home(props) {
     const newChatroomId = uuidv4()
 
     chatrooms.forEach(chatroom => {
-      if ((chatroom.userTwo === userOne && chatroom.userOne === userTwo) || (chatroom.userOne === userOne && chatroom.userTwo === userTwo)) {
-        setChatroomId(chatroom.chatroomId)
-        return chatroomExists = true
-      }
-      if(chatroom.userTwo !== userTwo || chatroom.userOne !== userOne || chatroom.userTwo !== userOne || chatroom.userOne) {
+
+      if(chatroom.userTwo !== userTwo && chatroom.userOne !== userOne && chatroom.userTwo !== userOne && chatroom.userOne !== userTwo) {
         setChatroomId(newChatroomId)
         return chatroomExists = false
       }
+      if ((chatroom.userTwo == userOne && chatroom.userOne == userTwo) || (chatroom.userOne == userOne && chatroom.userTwo == userTwo)) {
+        setChatroomId(chatroom.chatroomId)
+        return chatroomExists = true
+      }
+
     })
 
     if (chatroomExists === false) {
@@ -37,10 +39,9 @@ export default function Home(props) {
         userOne: userOne,
         userTwo: userTwo,
       });
-
+      
       return setChatroomId(newChatroomId)
     }
-
 
   }
 
