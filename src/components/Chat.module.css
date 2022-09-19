@@ -84,7 +84,7 @@
 .inputs {
   display: flex;
   flex-direction: column;
-  padding: 5px 3px 2px 3px;
+  padding: 1px 3px 2px 3px;
 }
 
 .inputs textarea {
@@ -97,7 +97,7 @@
 
 .chatbox {
   background-color: white;
-  height: 341px;
+  height: 345px;
   margin-bottom: 3px;
   margin-top: 5px;
   border-radius: 2px;

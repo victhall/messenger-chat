@@ -45,9 +45,10 @@ export default function Chat(props) {
       displayName,
       chatroomId: props.chatroomId
     });
-    messageRef.current.value = ''
 
+    messageRef.current.value = ''
     scrollRef.current.scrollIntoView({ behaviour: 'smooth' })
+
   }
   
   return (
