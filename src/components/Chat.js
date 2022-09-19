@@ -3,10 +3,11 @@ import { collection, orderBy, limit, query, setDoc, doc, serverTimestamp, where 
 import { firestore } from '../Firebase';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import ChatMessage from './ChatMessage'
-import { useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { useAuth } from '../contexts/AuthProvider';
 
 export default function Chat(props) {
+  const [contact, setContact] = useState('')
   const { currentUser } = useAuth();
   const messagesDb = collection(firestore, "messages");
   const messageQuery = query(messagesDb, where("chatroomId", "==", props.chatroomId), orderBy("createdAt", "asc"), limit(25));
@@ -16,8 +17,19 @@ export default function Chat(props) {
 
   const chatroomDb = collection(firestore, 'chatrooms');
   const chatroomQuery = query(chatroomDb, where("chatroomId", "==", props.chatroomId));
-  const [chatrooms] = useCollectionData(chatroomQuery);
+  const [chatroom] = useCollectionData(chatroomQuery);
   const scrollRef = useRef();
+
+  useEffect(() => {
+    if(chatroom) {
+    if (chatroom[0].userOne === currentUser.displayName) {
+      return setContact(chatroom[0].userTwo)
+    } 
+    if (chatroom[0].userTwo === currentUser.displayName) {
+      return setContact(chatroom[0].userOne)
+    }
+  }
+  }, [chatroom])
 
   const sendMsgHandler = async function (event) {
     event.preventDefault()
@@ -35,14 +47,14 @@ export default function Chat(props) {
     });
     messageRef.current.value = ''
 
-    scrollRef.current.scrollIntoView({behaviour: 'smooth'})
+    scrollRef.current.scrollIntoView({ behaviour: 'smooth' })
   }
-
+  
   return (
     <div className={classes['outer-chat__container']}>
       <div className={classes.header}>
 
-        <p>Messenger - {currentUser.displayName}</p>
+        <p>Messenger - {contact}</p>
         <div className={classes.container}>
           <span className={classes.box}>
             <span className={classes['box-minimize']}></span>
@@ -67,10 +79,10 @@ export default function Chat(props) {
       </div>
 
       <main className={classes['chatbox']}>
-        {messages && messages.map(message => 
-        <ChatMessage 
-        key={message.id} 
-        message={message} />)}
+        {messages && messages.map(message =>
+          <ChatMessage
+            key={message.id}
+            message={message} />)}
         <div ref={scrollRef}></div>
       </main>
 

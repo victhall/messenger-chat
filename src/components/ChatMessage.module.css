@@ -27,10 +27,9 @@
   visibility: visible;
   box-shadow: 0 0 11px rgba(7, 7, 7, 0.1);
   position: absolute;
-  right: 430px;
   padding: 8px;
   border-radius: 5px;
-
+  right: 10px
 }
 
 .sent {

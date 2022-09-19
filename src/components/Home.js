@@ -48,7 +48,7 @@ export default function Home() {
   return (
     <div className={classes.home}>
       <ContactList onStartChat={startChat} />
-      <Chat chatroomId={chatroomId} />
+      {chatroomId && <Chat chatroomId={chatroomId} />}
     </div>
   )
 }

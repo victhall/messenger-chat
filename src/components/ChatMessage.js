@@ -18,7 +18,6 @@ export default function ChatMessage(props) {
    setHover(false);
   }
 
-
   return (
     <div 
     className={classes.message}
