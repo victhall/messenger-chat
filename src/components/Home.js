@@ -8,7 +8,7 @@ import { collection, setDoc, doc, where } from "firebase/firestore";
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import { useState } from 'react';
 
-export default function Home(props) {
+export default function Home() {
   const [chatroomId, setChatroomId] = useState('');
   const { currentUser } = useAuth();
 
@@ -39,7 +39,7 @@ export default function Home(props) {
         userOne: userOne,
         userTwo: userTwo,
       });
-      
+
       return setChatroomId(newChatroomId)
     }
 

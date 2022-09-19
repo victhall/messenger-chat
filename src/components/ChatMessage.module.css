@@ -1,0 +1,42 @@
+.message {
+  margin: 10px;
+}
+
+.message p {
+  margin: 0;
+}
+
+.message-username {
+  font-size: 14px;
+  color: #1F1F1F;
+  padding-bottom: 4px;
+  font-weight: 600;
+}
+
+.message-text {
+  font-size: 14px;
+  padding-left: 8px;
+  padding-bottom: 5px;
+  color: #1F1F1F;
+}
+
+.message-timestamp {
+  font-size: 10px;
+  color: #3c3c3c;
+  opacity: 1;
+  visibility: visible;
+  box-shadow: 0 0 11px rgba(7, 7, 7, 0.1);
+  position: absolute;
+  right: 430px;
+  padding: 8px;
+  border-radius: 5px;
+
+}
+
+.sent {
+  color: #5039e0;
+}
+
+.recieved {
+  color: #e70001;
+}

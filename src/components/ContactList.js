@@ -76,12 +76,14 @@ export default function ContactList(props) {
                 return user
               }
             }).map((user) => {
+              if(user.username === currentUser.displayName) {
+               return null
+              }
               return (
                 <Contact
                   key={user.username}
-                  className={classes['friend-list']}
+                  className={classes['contact-list']}
                   username={user.username}
-                  chatId={user.chatId}
                   onStartChat={props.onStartChat}>
                     {user.username}
                   </Contact>   

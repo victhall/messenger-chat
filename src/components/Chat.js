@@ -17,6 +17,7 @@ export default function Chat(props) {
   const chatroomDb = collection(firestore, 'chatrooms');
   const chatroomQuery = query(chatroomDb, where("chatroomId", "==", props.chatroomId));
   const [chatrooms] = useCollectionData(chatroomQuery);
+  const scrollRef = useRef();
 
   const sendMsgHandler = async function (event) {
     event.preventDefault()
@@ -33,6 +34,8 @@ export default function Chat(props) {
       chatroomId: props.chatroomId
     });
     messageRef.current.value = ''
+
+    scrollRef.current.scrollIntoView({behaviour: 'smooth'})
   }
 
   return (
@@ -63,12 +66,13 @@ export default function Chat(props) {
         <p className="menu-help">Help</p>
       </div>
 
-      <div className={classes['chatbox']}>
+      <main className={classes['chatbox']}>
         {messages && messages.map(message => 
         <ChatMessage 
         key={message.id} 
         message={message} />)}
-      </div>
+        <div ref={scrollRef}></div>
+      </main>
 
       <form onSubmit={sendMsgHandler}>
         <div className={classes.inputs}>

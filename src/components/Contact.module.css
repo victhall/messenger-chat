@@ -1,0 +1,10 @@
+.contact {
+  padding: 5px 10px;
+  font-size: 1.1rem;
+  color: #1f1f1f;
+}
+
+.contact:hover {
+  background-color: #E0E0E0;
+  cursor: pointer;
+}

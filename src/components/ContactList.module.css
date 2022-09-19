@@ -4,6 +4,7 @@
   border-radius: .1rem;
   border: 3px outset;
   background-color: #dadad1;
+  margin-right: 10px;
 }
 
 .header {
@@ -98,7 +99,8 @@
     border: outset 1.5px #c0c3d2;
     border-radius: .2rem .2rem 0rem 0rem;
     background: linear-gradient(180deg, rgba(248, 249, 252, 1) 0%, rgba(207, 223, 237, 1) 40%);
-    padding-left: 10px;
+    height: 410px;
+    overflow: scroll;
   }
 
   .logout-btn {
@@ -133,18 +135,7 @@
   background: linear-gradient(to bottom, #dad3c9 0%, #e7e0d8 6%, #f8f3ef 18%, #f7f3f0 53%, #f8f7f5 59%, #fbf9fa 82%, #fffdfe 88%, #ffffff 94%, #f6f6f6 100%);
   filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#dad3c9', endColorstr='#f6f6f6', GradientType=0);
 }
-
-.friend-list {
-  list-style: none;
-  padding: 5px 0px;
-  font-size: 1.1rem;
-  color: #1f1f1f;
-  }
-  
-  .friend-list:hover{
-    cursor: pointer;
-  }
-  
+ 
   ul {
     padding-left: 0px;
     margin-top: 4px;
