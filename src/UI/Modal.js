@@ -1,5 +1,5 @@
 import * as ReactDOM from 'react-dom';
-import classes from './ErrorModal.module.css'
+import classes from './Modal.module.css'
 
 function ModalOverlay(props) {
   return (
@@ -25,7 +25,7 @@ function ModalOverlay(props) {
   )
 }
 
-export default function ErrorModal(props) {
+export default function Modal(props) {
   return (
     <>
       {ReactDOM.createPortal(<ModalOverlay

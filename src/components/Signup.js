@@ -7,7 +7,7 @@ import { collection, setDoc, doc } from "firebase/firestore";
 import { useAuth } from '../contexts/AuthProvider';
 import classes from './Signup.module.css';
 import Card from '../UI/Card';
-import ErrorModal from '../UI/ErrorModal';
+import Modal from '../UI/Modal';
 
 export default function Signup() {
   const usernameRef = useRef();
@@ -17,15 +17,14 @@ export default function Signup() {
 
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-
   const userDb = collection(firestore, "users");
   const [users] = useCollectionData(userDb);
-
   const navigate = useNavigate();
   const { signup } = useAuth();
+  let errorAudio = new Audio('../../error.mp3');
 
   const submitHandler = async function (event) {
-    event.preventDefault()
+    event.preventDefault();
 
     //if entered username is found in firestore db return error message
     const findExistingUsername = users.find(user => user.username === usernameRef.current.value)
@@ -50,26 +49,27 @@ export default function Signup() {
       await signup(emailRef.current.value, passwordRef.current.value);
       updateProfile(auth.currentUser, {
         displayName: usernameRef.current.value
-      })
+      });
       await setDoc(doc(userDb), {
         username: usernameRef.current.value,
       });
       navigate('/login')
     } catch {
+      errorAudio.play();
       setError({
         title: 'System Error',
         message: 'Account creation failed.'});
-    }
-    setIsLoading(false)
-  }
+    };
+    setIsLoading(false);
+  };
 
   const errorHandler = function () {
-    setError(null)
-  }
+    setError(null);
+  };
 
   return (
     <div>
-      {error && <ErrorModal title={error.title} message={error.message} onConfirm={errorHandler}/>}
+      {error && <Modal title={error.title} message={error.message} onConfirm={errorHandler}/>}
       <Card>
         <div className={classes['inner-signup__container']}>
           <div className={classes['signup-title']}>
@@ -121,5 +121,5 @@ export default function Signup() {
 
       </Card>
       </div>
-  )
-}
+  );
+};

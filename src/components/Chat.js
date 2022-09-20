@@ -2,13 +2,13 @@ import { useRef, useState, useEffect } from 'react';
 import { firestore } from '../Firebase';
 import { collection, orderBy, limit, query, setDoc, doc, serverTimestamp, where } from "firebase/firestore";
 import { useCollectionData } from 'react-firebase-hooks/firestore';
-import ChatMessage from './ChatMessage'
+import ChatMessage from './ChatMessage';
 import { useAuth } from '../contexts/AuthProvider';
 import classes from './Chat.module.css';
 
 export default function Chat(props) {
   const { currentUser } = useAuth();
-  const [contact, setContact] = useState('')
+  const [contact, setContact] = useState('');
 
   const messagesDb = collection(firestore, "messages");
   const messageQuery = query(messagesDb, where("chatroomId", "==", props.chatroomId), orderBy("createdAt", "asc"), limit(25));
@@ -20,22 +20,23 @@ export default function Chat(props) {
   const [chatroom] = useCollectionData(chatroomQuery);
 
   const scrollRef = useRef();
+  let sentAudio = new Audio('../../message-sent.mp3');
 
   useEffect(() => {
     //if chatroom exists, check if logged in username = userOne or userTwo
     //if true, return the opposite user to get the selected contact username
     if (chatroom) {
       if (chatroom[0].userOne === currentUser.displayName) {
-        return setContact(chatroom[0].userTwo)
-      }
+        return setContact(chatroom[0].userTwo);
+      };
       if (chatroom[0].userTwo === currentUser.displayName) {
-        return setContact(chatroom[0].userOne)
-      }
-    }
-  }, [chatroom])
+        return setContact(chatroom[0].userOne);
+      };
+    };
+  }, [chatroom]);
 
   const sendMsgHandler = async function (event) {
-    event.preventDefault()
+    event.preventDefault();
     const { uid, displayName } = currentUser;
     const timeStamp = new Date().toLocaleString('en-US', { hour: "2-digit", minute: "2-digit" });
 
@@ -47,10 +48,10 @@ export default function Chat(props) {
       displayName,
       chatroomId: props.chatroomId
     });
-
-    messageRef.current.value = ''
-    scrollRef.current.scrollIntoView({ behaviour: 'smooth' })
-  }
+    sentAudio.play();
+    messageRef.current.value = '';
+    scrollRef.current.scrollIntoView({ behaviour: 'smooth' });
+  };
 
   return (
     <div className={classes['outer-chat__container']}>
@@ -97,5 +98,5 @@ export default function Chat(props) {
         </div>
       </form>
     </div>
-  )
-}
+  );
+};

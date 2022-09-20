@@ -7,41 +7,41 @@ import Contact from './Contact.js';
 import { useAuth } from "../contexts/AuthProvider";
 import classes from './ContactList.module.css';
 import Card from "../UI/Card";
-import ErrorModal from "../UI/ErrorModal";
+import Modal from "../UI/Modal";
 
 export default function ContactList(props) {
   const [searchInput, setSearchInput] = useState('');
   const [error, setError] = useState('');
   const { currentUser, logout } = useAuth();
   const navigate = useNavigate();
-
   const userDb = collection(firestore, "users");
   const [users] = useCollectionData(userDb);
+  let errorAudio = new Audio('../../error.mp3');
 
   const searchInputHandler = function (event) {
-    setSearchInput(event.target.value)
+    setSearchInput(event.target.value);
   };
-
   async function logoutHandler() {
-    setError('')
+    setError('');
     try {
-      await logout()
-      navigate('/login')
+      await logout();
+      navigate('/login');
     } catch {
+      errorAudio.play();
       setError({
         title: 'Logout Failed',
         message: 'Refresh the page and try again.'
-      })
-    }
+      });
+    };
   };
 
   const errorHandler = function () {
-    setError(null)
+    setError(null);
   };
 
   return (
     <>
-      {error && <ErrorModal title={error.title} message={error.message} onConfirm={errorHandler} />}
+      {error && <Modal title={error.title} message={error.message} onConfirm={errorHandler} />}
       <Card>
         <form>
           <div className={classes.inputs}>
@@ -80,5 +80,5 @@ export default function ContactList(props) {
         <button onClick={logoutHandler} className={classes['logout-btn']}>Log Out</button>
       </Card>
     </>
-  )
-}
+  );
+};

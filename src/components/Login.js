@@ -2,7 +2,7 @@ import { useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthProvider';
 import Card from '../UI/Card';
-import ErrorModal from '../UI/ErrorModal';
+import Modal from '../UI/Modal';
 import classes from './Login.module.css';
 
 export default function Login() {
@@ -12,30 +12,33 @@ export default function Login() {
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+  let errorAudio = new Audio('../../error.mp3');
 
   async function submitHandler(event) {
     event.preventDefault();
-
     try {
       setError('');
       setIsLoading(true);
       await login(emailRef.current.value, passwordRef.current.value);
       navigate('/')
     } catch {
+      errorAudio.play();
       setError({
         title: 'Login Failed',
-        message: 'Your email or password is incorrect. Please try again.'});
+        message: 'Your email or password is incorrect. Please try again.'
+      });
     };
-    setIsLoading(false)
+
+    setIsLoading(false);
   };
 
   const errorHandler = function () {
-    setError(null)
+    setError(null);
   };
 
   return (
     <>
-      {error && <ErrorModal title={error.title} message={error.message} onConfirm={errorHandler} />}
+      {error && <Modal title={error.title} message={error.message} onConfirm={errorHandler} />}
       <Card>
         <div className={classes['inner-login__container']}>
           <div className={classes['login-title']}>
