@@ -1,4 +1,4 @@
-.outer-signup__container {
+.outer-modal__container {
   background-color: #d4e7f8;
   padding: 0 .2rem .2rem;
   border-radius: .1rem;
@@ -86,7 +86,7 @@
   font-size: .9rem;
 }
 
-.signup-btn {
+.modal-btn {
   color: #0f1679;
   font-weight: 600;
   width: 30%;
@@ -103,14 +103,14 @@
   filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#f6f6f6', endColorstr='#dad3c9', GradientType=0);
 }
 
-.signup-btn:hover,
-.signup-btn:focus {
+.modal-btn:hover,
+.modal-btn:focus {
   cursor: pointer;
   outline: 0;
   border: 1.5px solid #97a7cb;
 }
 
-.signup-btn:active {
+.modal-btn:active {
   background: #dad3c9;
   background: -moz-linear-gradient(top, #dad3c9 0%, #e7e0d8 6%, #f8f3ef 18%, #f7f3f0 53%, #f8f7f5 59%, #fbf9fa 82%, #fffdfe 88%, #ffffff 94%, #f6f6f6 100%);
   background: -webkit-linear-gradient(top, #dad3c9 0%, #e7e0d8 6%, #f8f3ef 18%, #f7f3f0 53%, #f8f7f5 59%, #fbf9fa 82%, #fffdfe 88%, #ffffff 94%, #f6f6f6 100%);
@@ -118,13 +118,13 @@
   filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#dad3c9', endColorstr='#f6f6f6', GradientType=0);
 }
 
-.inner-signup__container {
+.inner-modal__container {
   border: outset 1.5px #c0c3d2;
   border-radius: .2rem .2rem 0rem 0rem;
   background: linear-gradient(180deg, rgba(248, 249, 252, 1) 0%, rgba(207, 223, 237, 1) 40%);
 }
 
-.inner-signup__container p {
+.inner-modal__container p {
 text-align: center;
 padding: 10px 10px 5px 10px
 }

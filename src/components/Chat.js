@@ -73,10 +73,10 @@ export default function Chat(props) {
       </div>
 
       <div className={classes.menu}>
-        <p className="menu-chat">Chat</p>
-        <p className="menu-edit">Edit</p>
-        <p className="menu-view">View</p>
-        <p className="menu-contacts">Contact</p>
+        <p>Chat</p>
+        <p>Edit</p>
+        <p>View</p>
+        <p>Contact</p>
       </div>
 
       <main className={classes['chatbox']}>

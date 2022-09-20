@@ -1,7 +1,7 @@
 import classes from './Card.module.css'
 
 export default function Card(props) {
-  return <div className={classes['outer-signup__container']}>
+  return <div className={classes['outer-container']}>
     <div className={classes.header}>
       <p>Messenger</p>
       <div className={classes.container}>
@@ -20,11 +20,11 @@ export default function Card(props) {
     </div>
 
     <div className={classes.menu}>
-      <p className="menu-file">File</p>
-      <p className="menu-contacts">Contacts</p>
-      <p className="menu-actions">Actions</p>
-      <p className="menu-tools">Tools</p>
-      <p className="menu-help">Help</p>
+      <p>File</p>
+      <p>Contacts</p>
+      <p>Actions</p>
+      <p>Tools</p>
+      <p>Help</p>
     </div>
     <div>{props.children}</div>
 

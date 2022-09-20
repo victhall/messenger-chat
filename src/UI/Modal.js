@@ -3,7 +3,7 @@ import classes from './Modal.module.css'
 
 function ModalOverlay(props) {
   return (
-    <div className={classes['outer-signup__container']}>
+    <div className={classes['outer-modal__container']}>
       <div className={classes.header}>
         <p>{props.title}</p>
         <div className={classes.container}>
@@ -13,12 +13,12 @@ function ModalOverlay(props) {
           </span>
         </div>
       </div>
-      <div className={classes['inner-signup__container']}>
+      <div className={classes['inner-modal__container']}>
         <div>
           <p>{props.message}</p>
         </div>
         <footer className={classes.confirm}>
-          <button className={classes['signup-btn']} onClick={props.onConfirm}>Okay</button>
+          <button className={classes['modal-btn']} onClick={props.onConfirm}>Okay</button>
         </footer>
       </div>
     </div>
