@@ -29,7 +29,6 @@ export default function Home() {
         setChatroomId(chatroom.chatroomId)
         return chatroomExists = true
       }
-
     })
     //if chatroomExists was set to false, create a new chatroom document
     if (chatroomExists === false) {
@@ -38,10 +37,8 @@ export default function Home() {
         userOne: userOne,
         userTwo: userTwo,
       });
-
       return setChatroomId(newChatroomId)
     }
-
   }
 
   return (

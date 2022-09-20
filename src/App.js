@@ -3,10 +3,8 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import Signup from "./components/Signup";
 import Login from "./components/Login";
 import Home from '../src/components/Home';
-import Card from './UI/Card'
 import ResetPassword from './components/ResetPassword';
 import { AuthProvider, useAuth } from './contexts/AuthProvider';
-
 
 function App() {
 
@@ -31,7 +29,6 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/forgot-password" element={<ResetPassword />} />
-            <Route path="/card" element={<Card />} />
           </Routes>
         </AuthProvider>
       </Router>

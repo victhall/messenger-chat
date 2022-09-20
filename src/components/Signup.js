@@ -7,6 +7,7 @@ import { collection, setDoc, doc } from "firebase/firestore";
 import { useAuth } from '../contexts/AuthProvider';
 import classes from './Signup.module.css';
 import Card from '../UI/Card';
+import ErrorModal from '../UI/ErrorModal';
 
 export default function Signup() {
   const usernameRef = useRef();
@@ -30,13 +31,17 @@ export default function Signup() {
     const findExistingUsername = users.find(user => user.username === usernameRef.current.value)
 
     if (findExistingUsername) {
-      return setError('Username already exists')
+      return setError({
+        title: 'Invalid Username',
+        message: 'Sorry, that username already exists.'})
     };
 
     //if entered passwords do not match return error message
     if (passwordRef.current.value !==
       confirmPasswordRef.current.value) {
-      return setError('Passwords do not match')
+      return setError({
+        title: 'Invalid Password',
+        message: 'Passwords do not match'})
     };
 
     try {
@@ -51,18 +56,23 @@ export default function Signup() {
       });
       navigate('/login')
     } catch {
-      setError('Account creation failed.');
+      setError({
+        title: 'System Error',
+        message: 'Account creation failed.'});
     }
     setIsLoading(false)
   }
 
+  const errorHandler = function () {
+    setError(null)
+  }
+
   return (
-    <>
+    <div>
+      {error && <ErrorModal title={error.title} message={error.message} onConfirm={errorHandler}/>}
       <Card>
         <div className={classes['inner-signup__container']}>
           <div className={classes['signup-title']}>
-            {error}
-
             <h2>Create Account</h2>
           </div>
 
@@ -110,6 +120,6 @@ export default function Signup() {
         </div>
 
       </Card>
-    </>
+      </div>
   )
 }

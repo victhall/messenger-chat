@@ -6,7 +6,7 @@ import ChatMessage from './ChatMessage'
 import { useAuth } from '../contexts/AuthProvider';
 import classes from './Chat.module.css';
 
-export default function Chat(props) {  
+export default function Chat(props) {
   const { currentUser } = useAuth();
   const [contact, setContact] = useState('')
 
@@ -36,7 +36,6 @@ export default function Chat(props) {
 
   const sendMsgHandler = async function (event) {
     event.preventDefault()
-
     const { uid, displayName } = currentUser;
     const timeStamp = new Date().toLocaleString('en-US', { hour: "2-digit", minute: "2-digit" });
 
@@ -76,9 +75,7 @@ export default function Chat(props) {
         <p className="menu-chat">Chat</p>
         <p className="menu-edit">Edit</p>
         <p className="menu-view">View</p>
-        <p className="menu-actions">Actions</p>
         <p className="menu-contacts">Contact</p>
-        <p className="menu-help">Help</p>
       </div>
 
       <main className={classes['chatbox']}>

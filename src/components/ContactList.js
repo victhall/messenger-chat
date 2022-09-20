@@ -1,15 +1,16 @@
-import { useState } from "react"
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import { collection } from "firebase/firestore";
 import { firestore } from "../Firebase";
-import Contact from './Contact.js'
-import { useAuth } from "../contexts/AuthProvider"
-import classes from './ContactList.module.css'
+import Contact from './Contact.js';
+import { useAuth } from "../contexts/AuthProvider";
+import classes from './ContactList.module.css';
 import Card from "../UI/Card";
+import ErrorModal from "../UI/ErrorModal";
 
 export default function ContactList(props) {
-  const [searchInput, setSearchInput] = useState('')
+  const [searchInput, setSearchInput] = useState('');
   const [error, setError] = useState('');
   const { currentUser, logout } = useAuth();
   const navigate = useNavigate();
@@ -19,7 +20,7 @@ export default function ContactList(props) {
 
   const searchInputHandler = function (event) {
     setSearchInput(event.target.value)
-  }
+  };
 
   async function logoutHandler() {
     setError('')
@@ -27,13 +28,21 @@ export default function ContactList(props) {
       await logout()
       navigate('/login')
     } catch {
-      setError('Failed to logout')
+      setError({
+        title: 'Logout Failed',
+        message: 'Refresh the page and try again.'
+      })
     }
-  }
+  };
+
+  const errorHandler = function () {
+    setError(null)
+  };
 
   return (
     <>
-<Card>
+      {error && <ErrorModal title={error.title} message={error.message} onConfirm={errorHandler} />}
+      <Card>
         <form>
           <div className={classes.inputs}>
             <input
