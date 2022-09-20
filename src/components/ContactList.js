@@ -1,11 +1,11 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../contexts/AuthProvider"
-import { collection, getDocs } from "firebase/firestore";
-import { firestore } from "../Firebase";
 import { useCollectionData } from 'react-firebase-hooks/firestore';
-import classes from './ContactList.module.css'
+import { collection } from "firebase/firestore";
+import { firestore } from "../Firebase";
 import Contact from './Contact.js'
+import { useAuth } from "../contexts/AuthProvider"
+import classes from './ContactList.module.css'
 
 export default function ContactList(props) {
   const [searchInput, setSearchInput] = useState('')
@@ -22,10 +22,8 @@ export default function ContactList(props) {
 
   async function logoutHandler() {
     setError('')
-
     try {
       await logout()
-      console.log('LOGGED OUT')
       navigate('/login')
     } catch {
       setError('Failed to logout')
@@ -70,14 +68,17 @@ export default function ContactList(props) {
         <div className={classes['inner-fl__container']}>
           <ul>
             {users && users.filter((user) => {
+              //if search input is blank, return list of users
               if (searchInput == "") {
                 return user
+                //if user contains search input characters, return those users
               } else if (user.username.toLowerCase().includes(searchInput.toLowerCase())) {
                 return user
               }
             }).map((user) => {
-              if(user.username === currentUser.displayName) {
-               return null
+              //if logged in username matches username in list, do not show
+              if (user.username === currentUser.displayName) {
+                return null
               }
               return (
                 <Contact
@@ -85,8 +86,8 @@ export default function ContactList(props) {
                   className={classes['contact-list']}
                   username={user.username}
                   onStartChat={props.onStartChat}>
-                    {user.username}
-                  </Contact>   
+                  {user.username}
+                </Contact>
               )
             })}
           </ul>

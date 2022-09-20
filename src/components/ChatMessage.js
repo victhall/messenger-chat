@@ -10,20 +10,20 @@ export default function ChatMessage(props) {
 
   const onHover = (event) => {
     event.preventDefault();
- setHover(true)
+    setHover(true)
   };
 
   const onHoverOver = (event) => {
     event.preventDefault();
-   setHover(false);
+    setHover(false);
   }
 
   return (
-    <div 
-    className={classes.message}
-    onMouseEnter={(event) => onHover(event)}
-    onMouseLeave={(event) => {onHoverOver(event)}}>
-      {hover && <p className={classes['message-timestamp']}>sent on {createdAt.toDate().toLocaleString('default', { month: 'short', day: 'numeric', year: 'numeric'})} at {timestamp}</p>}
+    <div
+      className={classes.message}
+      onMouseEnter={(event) => onHover(event)}
+      onMouseLeave={(event) => { onHoverOver(event) }}>
+      {hover && <p className={classes['message-timestamp']}>sent on {createdAt.toDate().toLocaleString('default', { month: 'short', day: 'numeric', year: 'numeric' })} at {timestamp}</p>}
       <p className={`${classes['message-username']} ${messageClass}`}>{displayName} says:</p>
       <p className={classes['message-text']}>{message}</p>
     </div>

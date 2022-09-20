@@ -1,14 +1,15 @@
-import { Link } from 'react-router-dom'
-import classes from './ResetPassword.module.css'
 import { useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthProvider';
+import classes from './ResetPassword.module.css';
 
 export default function ResetPassword() {
   const emailRef = useRef();
-  const { resetPassword } = useAuth();
+
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
+  const { resetPassword } = useAuth();
 
   const submitHandler = async function (event) {
     event.preventDefault()
@@ -19,7 +20,7 @@ export default function ResetPassword() {
       await resetPassword(emailRef.current.value);
     } catch (event) {
       console.log(event)
-      setError('RESET failed.');
+      setError('Reset failed.');
     }
     emailRef.current.value = ""
     setIsLoading(false)

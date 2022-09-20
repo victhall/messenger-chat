@@ -1,7 +1,9 @@
 import { useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import classes from './Login.module.css';
+
 import { useAuth } from '../contexts/AuthProvider';
+
+import classes from './Login.module.css';
 
 export default function Login() {
   const emailRef = useRef();

@@ -1,31 +1,33 @@
 import { useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import classes from './Signup.module.css';
-import { useAuth } from '../contexts/AuthProvider';
-import { updateProfile } from 'firebase/auth';
-import { firestore, auth } from '../Firebase'
-import { collection, setDoc, doc } from "firebase/firestore";
 import { useCollectionData } from 'react-firebase-hooks/firestore';
+import { updateProfile } from 'firebase/auth';
+import { firestore, auth } from '../Firebase';
+import { collection, setDoc, doc } from "firebase/firestore";
+import { useAuth } from '../contexts/AuthProvider';
+import classes from './Signup.module.css';
 
 export default function Signup() {
   const usernameRef = useRef();
   const emailRef = useRef();
   const passwordRef = useRef();
   const confirmPasswordRef = useRef();
-  const { signup } = useAuth();
+
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const navigate = useNavigate();
-  
+
   const userDb = collection(firestore, "users");
   const [users] = useCollectionData(userDb);
+
+  const navigate = useNavigate();
+  const { signup } = useAuth();
 
   const submitHandler = async function (event) {
     event.preventDefault()
 
     //if entered username is found in firestore db return error message
     const findExistingUsername = users.find(user => user.username === usernameRef.current.value)
-    
+
     if (findExistingUsername) {
       return setError('Username already exists')
     };
@@ -47,8 +49,7 @@ export default function Signup() {
         username: usernameRef.current.value,
       });
       navigate('/login')
-    } catch (event) {
-      console.log(event)
+    } catch {
       setError('Account creation failed.');
     }
     setIsLoading(false)
@@ -87,7 +88,7 @@ export default function Signup() {
             <h2>Create Account</h2>
           </div>
 
-          {error && console.log(error)}
+          {error}
           <form onSubmit={submitHandler}>
             <div className={classes.inputs}>
               <label>Username:</label>
