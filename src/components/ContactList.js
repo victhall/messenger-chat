@@ -6,6 +6,7 @@ import { firestore } from "../Firebase";
 import Contact from './Contact.js'
 import { useAuth } from "../contexts/AuthProvider"
 import classes from './ContactList.module.css'
+import Card from "../UI/Card";
 
 export default function ContactList(props) {
   const [searchInput, setSearchInput] = useState('')
@@ -32,32 +33,7 @@ export default function ContactList(props) {
 
   return (
     <>
-      <div className={classes['outer-fl__container']}>
-        <div className={classes.header}>
-
-          <p>Contacts</p>
-          <div className={classes.container}>
-            <span className={classes.box}>
-              <span className={classes['box-minimize']}></span>
-            </span>
-            <span className={classes.box}>
-              <span className={classes['box-maximize']}></span>
-            </span>
-            <span className={classes.box}>
-              <span className={`${classes['box-exit']} ${classes['box-exit-right']}`}></span>
-              <span className={`${classes['box-exit']} ${classes['box-exit-left']}`}></span>
-            </span>
-          </div>
-        </div>
-
-        <div className={classes.menu}>
-          <p className="menu-file">File</p>
-          <p className="menu-contacts">Contacts</p>
-          <p className="menu-actions">Actions</p>
-          <p className="menu-tools">Tools</p>
-          <p className="menu-help">Help</p>
-        </div>
-
+<Card>
         <form>
           <div className={classes.inputs}>
             <input
@@ -93,7 +69,7 @@ export default function ContactList(props) {
           </ul>
         </div>
         <button onClick={logoutHandler} className={classes['logout-btn']}>Log Out</button>
-      </div>
+      </Card>
     </>
   )
 }

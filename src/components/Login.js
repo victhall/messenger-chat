@@ -2,6 +2,7 @@ import { useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 import { useAuth } from '../contexts/AuthProvider';
+import Card from '../UI/Card';
 
 import classes from './Login.module.css';
 
@@ -30,32 +31,7 @@ export default function Login() {
 
   return (
     <>
-      <div className={classes['outer-login__container']}>
-
-        <div className={classes.header}>
-
-          <p>Messenger</p>
-          <div className={classes.container}>
-            <span className={classes.box}>
-              <span className={classes['box-minimize']}></span>
-            </span>
-            <span className={classes.box}>
-              <span className={classes['box-maximize']}></span>
-            </span>
-            <span className={classes.box}>
-              <span className={`${classes['box-exit']} ${classes['box-exit-right']}`}></span>
-              <span className={`${classes['box-exit']} ${classes['box-exit-left']}`}></span>
-            </span>
-          </div>
-        </div>
-
-        <div className={classes.menu}>
-          <p className="menu-file">File</p>
-          <p className="menu-contacts">Contacts</p>
-          <p className="menu-actions">Actions</p>
-          <p className="menu-tools">Tools</p>
-          <p className="menu-help">Help</p>
-        </div>
+<Card>
 
         <div className={classes['inner-login__container']}>
         <div className={classes['login-title']}>
@@ -85,7 +61,7 @@ export default function Login() {
           </div>
 
         </div>
-      </div>
+      </Card>
     </>
   )
 }

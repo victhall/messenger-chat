@@ -6,6 +6,7 @@ import { firestore, auth } from '../Firebase';
 import { collection, setDoc, doc } from "firebase/firestore";
 import { useAuth } from '../contexts/AuthProvider';
 import classes from './Signup.module.css';
+import Card from '../UI/Card';
 
 export default function Signup() {
   const usernameRef = useRef();
@@ -57,38 +58,14 @@ export default function Signup() {
 
   return (
     <>
-      <div className={classes['outer-signup__container']}>
-        <div className={classes.header}>
-          <p>Messenger</p>
-          <div className={classes.container}>
-            <span className={classes.box}>
-              <span className={classes['box-minimize']}></span>
-            </span>
-            <span className={classes.box}>
-              <span className={classes['box-maximize']}></span>
-            </span>
-            <span className={classes.box}>
-              <span className={`${classes['box-exit']} ${classes['box-exit-right']}`}></span>
-              <span className={`${classes['box-exit']} ${classes['box-exit-left']}`}></span>
-            </span>
-
-          </div>
-        </div>
-
-        <div className={classes.menu}>
-          <p className="menu-file">File</p>
-          <p className="menu-contacts">Contacts</p>
-          <p className="menu-actions">Actions</p>
-          <p className="menu-tools">Tools</p>
-          <p className="menu-help">Help</p>
-        </div>
-
+      <Card>
         <div className={classes['inner-signup__container']}>
           <div className={classes['signup-title']}>
+            {error}
+
             <h2>Create Account</h2>
           </div>
 
-          {error}
           <form onSubmit={submitHandler}>
             <div className={classes.inputs}>
               <label>Username:</label>
@@ -132,7 +109,7 @@ export default function Signup() {
           </div>
         </div>
 
-      </div>
+      </Card>
     </>
   )
 }
