@@ -23,13 +23,14 @@ export default function Signup() {
   const { signup } = useAuth();
   let errorAudio = new Audio('../../error.mp3');
 
-  const submitHandler = async function (event) {
+  async function submitHandler(event) {
     event.preventDefault();
 
     //if entered username is found in firestore db return error message
     const findExistingUsername = users.find(user => user.username === usernameRef.current.value)
 
     if (findExistingUsername) {
+      errorAudio.play();
       return setError({
         title: 'Invalid Username',
         message: 'Sorry, that username already exists.'})
@@ -38,9 +39,10 @@ export default function Signup() {
     //if entered passwords do not match return error message
     if (passwordRef.current.value !==
       confirmPasswordRef.current.value) {
+        errorAudio.play();
       return setError({
         title: 'Invalid Password',
-        message: 'Passwords do not match'})
+        message: 'Passwords do not match. Verify and try again.'})
     };
 
     try {
@@ -58,7 +60,7 @@ export default function Signup() {
       errorAudio.play();
       setError({
         title: 'System Error',
-        message: 'Account creation failed.'});
+        message: 'Account creation failed. Please check email.'});
     };
     setIsLoading(false);
   };
