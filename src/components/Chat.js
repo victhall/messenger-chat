@@ -35,12 +35,12 @@ export default function Chat(props) {
     };
   }, [chatroom]);
 
-  const sendMsgHandler = async function (event) {
+  const sendMsgHandler = function (event) {
     event.preventDefault();
     const { uid, displayName } = currentUser;
     const timeStamp = new Date().toLocaleString('en-US', { hour: "2-digit", minute: "2-digit" });
 
-    await setDoc(doc(messagesDb), {
+    setDoc(doc(messagesDb), {
       message: messageRef.current.value,
       createdAt: serverTimestamp(),
       timestamp: timeStamp,
