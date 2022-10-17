@@ -13,7 +13,7 @@ export default function Home() {
   const chatroomDb = collection(firestore, "chatrooms");
   const [chatrooms] = useCollectionData(chatroomDb);
 
-  function startChat(userOne, userTwo) {
+  async function startChat(userOne, userTwo) {
     let chatroomExists = false;
     const newChatroomId = uuidv4();
 
@@ -33,7 +33,7 @@ export default function Home() {
     
     if(chatroomExists) return
     
-      setDoc(doc(chatroomDb), {
+    await setDoc(doc(chatroomDb), {
         chatroomId: newChatroomId,
         userOne: userOne,
         userTwo: userTwo,

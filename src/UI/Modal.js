@@ -2,12 +2,14 @@ import * as ReactDOM from 'react-dom';
 import classes from './Modal.module.css'
 
 function ModalOverlay(props) {
+  let errorAudio = new Audio('../../error.mp3');
+
   return (
     <div className={classes['outer-modal__container']}>
       <div className={classes.header}>
         <p>{props.title}</p>
         <div className={classes.container}>
-          <span className={classes.box}>
+          <span className={classes.box} onClick={() => errorAudio.play()}>
             <span className={`${classes['box-exit']} ${classes['box-exit-right']}`}></span>
             <span className={`${classes['box-exit']} ${classes['box-exit-left']}`}></span>
           </span>

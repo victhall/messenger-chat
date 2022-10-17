@@ -33,14 +33,14 @@ export default function Chat(props) {
         return setContact(chatroom[0].userOne);
       };
     };
-  }, [chatroom]);
+  }, [chatroom, currentUser.displayName]);
 
-  const sendMsgHandler = function (event) {
+  const sendMsgHandler = async function (event) {
     event.preventDefault();
     const { uid, displayName } = currentUser;
     const timeStamp = new Date().toLocaleString('en-US', { hour: "2-digit", minute: "2-digit" });
 
-    setDoc(doc(messagesDb), {
+    await setDoc(doc(messagesDb), {
       message: messageRef.current.value,
       createdAt: serverTimestamp(),
       timestamp: timeStamp,
