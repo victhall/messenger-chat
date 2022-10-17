@@ -54,7 +54,7 @@ export default function ContactList(props) {
           <ul>
             {users && users.filter((user) => {
               //if search input is blank, return list of users
-              if (searchInput == "") {
+              if (searchInput === "") {
                 return user
                 //if user contains search input characters, return those users
               } else if (user.username.toLowerCase().includes(searchInput.toLowerCase())) {
